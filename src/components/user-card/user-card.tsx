@@ -11,7 +11,7 @@ export default function UserCard({ className, style, data }: UserCardProps) {
   return (
     <div
       className={clsx(
-        "w-full min-h-[384px] border rounded-md bg-white/50 flex items-center justify-center gap-4 backdrop-blur-sm flex-col",
+        "w-full min-h-[384px] border rounded-md bg-white/50 flex items-center justify-center gap-4 flex-col p-4",
         className
       )}
       style={style}
@@ -22,11 +22,13 @@ export default function UserCard({ className, style, data }: UserCardProps) {
         className="rounded-full"
       />
 
-      <div className="text-xl font-medium">
-        {data.name.title} {data.name.first} {data.name.last}
+      <div className="text-xl font-medium text-center break-words">
+        {`${data.name.title} ${data.name.first} ${data.name.last}`}
       </div>
 
-      <div className="text-sm text-gray-500">{data.email}</div>
+      <div className="text-sm text-gray-500 text-center break-words">
+        {data.email}
+      </div>
     </div>
   );
 }

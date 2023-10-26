@@ -1,4 +1,5 @@
 import Page from "@/components/page";
+import Pagination from "@/components/pagination";
 import UserCard from "@/components/user-card";
 import { useGetUsersQuery } from "@/features/api";
 import { matchSorter } from "match-sorter";
@@ -6,11 +7,11 @@ import { useMemo, useState } from "react";
 
 export default function Home() {
   const [query] = useState("");
-  const [page] = useState(1);
-  const [results] = useState(10);
-  const { data, isLoading, error, refetch } = useGetUsersQuery({
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
+  const { data, isFetching, error, refetch } = useGetUsersQuery({
     page,
-    results,
+    results: perPage,
   });
 
   const usersToRender = useMemo(() => {
@@ -23,7 +24,12 @@ export default function Home() {
     });
   }, [data?.results, query]);
 
-  if (isLoading) {
+  const scrollToTop = () => {
+    const scrollToTopElement = document.getElementById("scroll-to-top");
+    scrollToTopElement?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  if (isFetching) {
     return (
       <Page className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {Array.from({ length: 7 }).map((_, index) => (
@@ -55,10 +61,38 @@ export default function Home() {
   }
 
   return (
-    <Page className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {usersToRender.map((user) => (
-        <UserCard key={user.id.value} data={user} />
-      ))}
+    <Page>
+      <div id="scroll-to-top"></div>
+
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {usersToRender.map((user) => (
+          <UserCard key={user.id.value} data={user} />
+        ))}
+      </div>
+
+      <div className="flex items-center justify-center bg-white my-4 rounded py-4 shadow-sm gap-4">
+        <Pagination
+          onPrevious={() => {
+            setPage((prev) => Math.max(prev - 1, 1));
+            scrollToTop();
+          }}
+          disablePrevious={page === 1}
+          onNext={() => {
+            setPage((prev) => prev + 1);
+            scrollToTop();
+          }}
+        />
+        <div>1 - {perPage}</div>
+
+        <input
+          type="number"
+          className="border px-4 w-20"
+          value={perPage}
+          onChange={(e) => {
+            setPerPage(Math.min(e.target.valueAsNumber, 50));
+          }}
+        />
+      </div>
     </Page>
   );
 }
