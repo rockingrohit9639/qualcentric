@@ -10,7 +10,7 @@ export default function Navbar({ className, style }: NavbarProps) {
     <div
       style={style}
       className={clsx(
-        "w-full fixed top-0 left-0 h-16 bg-white/10 backdrop-blur-md border-b",
+        "w-full fixed top-0 left-0 h-16 bg-white/10 backdrop-blur-md border-b z-50",
         className
       )}
     >
