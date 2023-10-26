@@ -11,6 +11,7 @@ specifiers:
   axios: ^1.5.1
   clsx: ^2.0.0
   cz-conventional-changelog: ^3.3.0
+  dayjs: ^1.11.10
   eslint: ^8.45.0
   eslint-plugin-react-hooks: ^4.6.0
   eslint-plugin-react-refresh: ^0.4.3
@@ -29,6 +30,7 @@ dependencies:
   '@reduxjs/toolkit': 1.9.7_reiadaay42xu3uk4bvhmtbk5mu
   axios: 1.5.1
   clsx: 2.0.0
+  dayjs: 1.11.10
   lucide-react: 0.289.0_react@18.2.0
   match-sorter: 6.3.1
   react: 18.2.0
@@ -1294,6 +1296,10 @@ packages:
     transitivePeerDependencies:
       - typescript
     dev: true
+
+  /dayjs/1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+    dev: false
 
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}

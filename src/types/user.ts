@@ -20,6 +20,16 @@ export type User = {
     age: number;
     date: string;
   };
+  location: {
+    city: string;
+    country: string;
+    postcode: string;
+    state: string;
+    street: {
+      name: string;
+      number: number;
+    };
+  };
 };
 
 export type PaginationOptions = {
