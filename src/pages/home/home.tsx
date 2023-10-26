@@ -6,7 +6,7 @@ import { matchSorter } from "match-sorter";
 import { useMemo, useState } from "react";
 
 export default function Home() {
-  const [query] = useState("");
+  const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
   const { data, isFetching, error, refetch } = useGetUsersQuery({
@@ -64,10 +64,27 @@ export default function Home() {
     <Page>
       <div id="scroll-to-top"></div>
 
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {usersToRender.map((user) => (
-          <UserCard key={user.id.value} data={user} />
-        ))}
+      <div className="w-full bg-white my-4 flex items-center justify-center rounded-md shadow-sm">
+        <input
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+          }}
+          placeholder="Search for name or email"
+          className="active:border-none active:outline-none outline-none py-4"
+        />
+      </div>
+
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+        {!usersToRender.length ? (
+          <div className="col-span-full flex items-center justify-center">
+            No User Found
+          </div>
+        ) : (
+          usersToRender.map((user) => (
+            <UserCard key={user.id.value} data={user} />
+          ))
+        )}
       </div>
 
       <div className="flex items-center justify-center bg-white my-4 rounded py-4 shadow-sm gap-4">
