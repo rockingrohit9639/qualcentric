@@ -1,8 +1,15 @@
+import { Route, Routes } from "react-router-dom";
+import Home from "@/pages/home";
+import Navbar from "@/components/navbar";
+
 function App() {
   return (
-    <div className="flex items-center justify-center h-screen">
-      <h1 className="text-2xl font-bold">Home Page</h1>
-    </div>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </>
   );
 }
 
