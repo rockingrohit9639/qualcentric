@@ -15,7 +15,7 @@ export default function Navbar({ className, style }: NavbarProps) {
       )}
     >
       <div className="max-w-screen-xl mx-auto flex items-center h-full px-4">
-        <h1 className="text-xl font-bold">Qualcentric</h1>
+        <h1 className="text-xl font-bold">Qualcentric | User List Fetching</h1>
       </div>
     </div>
   );
